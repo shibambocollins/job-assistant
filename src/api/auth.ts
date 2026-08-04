@@ -22,6 +22,21 @@ export async function login(payload: LoginPayload): Promise<AuthResponse> {
   return data;
 }
 
+export async function loginWithGoogle(idToken: string): Promise<AuthResponse> {
+  const { data } = await apiClient.post<AuthResponse>('/auth/google', { idToken });
+  return data;
+}
+
+export async function forgotPassword(email: string): Promise<{ message: string }> {
+  const { data } = await apiClient.post<{ message: string }>('/auth/forgot-password', { email });
+  return data;
+}
+
+export async function resetPassword(token: string, newPassword: string): Promise<{ message: string }> {
+  const { data } = await apiClient.post<{ message: string }>('/auth/reset-password', { token, newPassword });
+  return data;
+}
+
 export interface CurrentUser {
   email: string;
   authorities: { authority: string }[];

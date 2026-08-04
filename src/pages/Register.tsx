@@ -4,8 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
+import { Input, PasswordInput } from '../components/ui/Input';
 import { Alert } from '../components/ui/Alert';
+import { GoogleAuthButton } from '../components/GoogleAuthButton';
 
 export function Register() {
   const [fullName, setFullName] = useState('');
@@ -15,6 +16,8 @@ export function Register() {
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+
+  const canSubmit = fullName.trim().length > 0 && email.trim().length > 0 && password.length >= 8 && !loading;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -51,21 +54,28 @@ export function Register() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <div className="mb-4">
-          <Input
+          <PasswordInput
             label="Password"
-            type="password"
             placeholder="••••••••"
             required
             minLength={8}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p className="text-xs text-[#6B6B6B] mt-1">Must be at least 8 characters long.</p>
+          <p className="text-xs text-[#6B6B6B] -mt-3">Must be at least 8 characters long.</p>
         </div>
-        <Button className="w-full mt-2" type="submit" disabled={loading}>
+        <Button className="w-full mt-2" type="submit" disabled={!canSubmit}>
           {loading ? 'Creating account…' : 'Create account'}
         </Button>
       </form>
+
+      <div className="flex items-center gap-3 my-6">
+        <div className="flex-1 h-px bg-[#E8E5E1]" />
+        <span className="text-xs text-[#6B6B6B]">or</span>
+        <div className="flex-1 h-px bg-[#E8E5E1]" />
+      </div>
+      <GoogleAuthButton onError={setError} />
+
       <div className="mt-6 text-center text-sm text-[#6B6B6B]">
         Already have an account?{' '}
         <Link to="/login" className="text-[#7A5C46] font-medium hover:underline">

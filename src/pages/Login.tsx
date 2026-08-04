@@ -4,8 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
+import { Input, PasswordInput } from '../components/ui/Input';
 import { Alert } from '../components/ui/Alert';
+import { GoogleAuthButton } from '../components/GoogleAuthButton';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -14,6 +15,8 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const canSubmit = email.trim().length > 0 && password.length > 0 && !loading;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -41,18 +44,30 @@ export function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Input
-          label="Password"
-          type="password"
+        <div className="flex items-center justify-between mb-1.5">
+          <label className="text-sm font-medium text-[#1F1F1F]">Password</label>
+          <Link to="/forgot-password" className="text-xs text-[#7A5C46] hover:underline">
+            Forgot password?
+          </Link>
+        </div>
+        <PasswordInput
           placeholder="••••••••"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button className="w-full mt-2" type="submit" disabled={loading}>
+        <Button className="w-full mt-2" type="submit" disabled={!canSubmit}>
           {loading ? 'Logging in…' : 'Log in'}
         </Button>
       </form>
+
+      <div className="flex items-center gap-3 my-6">
+        <div className="flex-1 h-px bg-[#E8E5E1]" />
+        <span className="text-xs text-[#6B6B6B]">or</span>
+        <div className="flex-1 h-px bg-[#E8E5E1]" />
+      </div>
+      <GoogleAuthButton onError={setError} />
+
       <div className="mt-6 text-center text-sm text-[#6B6B6B]">
         Don't have an account?{' '}
         <Link to="/register" className="text-[#7A5C46] font-medium hover:underline">
