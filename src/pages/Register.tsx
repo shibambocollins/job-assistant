@@ -1,7 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
+import { AuthLayout } from '../components/AuthLayout';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
 
 export function Register() {
   const [fullName, setFullName] = useState('');
@@ -27,62 +31,52 @@ export function Register() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 rounded-lg bg-white p-8 shadow">
-        <h1 className="text-2xl font-semibold text-slate-900">Create an account</h1>
-
-        {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Full name</label>
-          <input
-            type="text"
-            required
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
-          />
+    <AuthLayout title="Create an account" subtitle="Start tracking and analyzing your job applications.">
+      {error && (
+        <div className="mb-6 p-3 bg-[#B5654A]/10 border border-[#B5654A]/20 text-[#B5654A] text-sm rounded-md flex items-start">
+          <X className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
+          {error}
         </div>
-
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Email</label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Password</label>
-          <input
+      )}
+      <form onSubmit={handleSubmit}>
+        <Input
+          label="Full name"
+          type="text"
+          placeholder="Jane Doe"
+          required
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
+        <Input
+          label="Email address"
+          type="email"
+          placeholder="name@example.com"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="mb-4">
+          <Input
+            label="Password"
             type="password"
+            placeholder="••••••••"
             required
             minLength={8}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
           />
-          <p className="mt-1 text-xs text-slate-500">At least 8 characters</p>
+          <p className="text-xs text-[#6B6B6B] mt-1">Must be at least 8 characters long.</p>
         </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-slate-900 py-2 text-white hover:bg-slate-800 disabled:opacity-50"
-        >
-          {loading ? 'Creating account…' : 'Register'}
-        </button>
-
-        <p className="text-center text-sm text-slate-600">
-          Already have an account?{' '}
-          <Link to="/login" className="text-slate-900 underline">
-            Log in
-          </Link>
-        </p>
+        <Button className="w-full mt-2" type="submit" disabled={loading}>
+          {loading ? 'Creating account…' : 'Create account'}
+        </Button>
       </form>
-    </div>
+      <div className="mt-6 text-center text-sm text-[#6B6B6B]">
+        Already have an account?{' '}
+        <Link to="/login" className="text-[#7A5C46] font-medium hover:underline">
+          Log in
+        </Link>
+      </div>
+    </AuthLayout>
   );
 }

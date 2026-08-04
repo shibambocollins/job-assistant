@@ -1,7 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
+import { AuthLayout } from '../components/AuthLayout';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -26,49 +30,40 @@ export function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 rounded-lg bg-white p-8 shadow">
-        <h1 className="text-2xl font-semibold text-slate-900">Log in</h1>
-
-        {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Email</label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
-          />
+    <AuthLayout title="Welcome back" subtitle="Enter your details to access your dashboard.">
+      {error && (
+        <div className="mb-6 p-3 bg-[#B5654A]/10 border border-[#B5654A]/20 text-[#B5654A] text-sm rounded-md flex items-start">
+          <X className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
+          {error}
         </div>
-
-        <div>
-          <label className="block text-sm font-medium text-slate-700">Password</label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 focus:border-slate-500 focus:outline-none"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-slate-900 py-2 text-white hover:bg-slate-800 disabled:opacity-50"
-        >
+      )}
+      <form onSubmit={handleSubmit}>
+        <Input
+          label="Email address"
+          type="email"
+          placeholder="name@example.com"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          label="Password"
+          type="password"
+          placeholder="••••••••"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button className="w-full mt-2" type="submit" disabled={loading}>
           {loading ? 'Logging in…' : 'Log in'}
-        </button>
-
-        <p className="text-center text-sm text-slate-600">
-          No account?{' '}
-          <Link to="/register" className="text-slate-900 underline">
-            Register
-          </Link>
-        </p>
+        </Button>
       </form>
-    </div>
+      <div className="mt-6 text-center text-sm text-[#6B6B6B]">
+        Don't have an account?{' '}
+        <Link to="/register" className="text-[#7A5C46] font-medium hover:underline">
+          Create one
+        </Link>
+      </div>
+    </AuthLayout>
   );
 }

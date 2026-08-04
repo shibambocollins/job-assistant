@@ -1,1 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
 @import "tailwindcss";
+
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+
+  /* Brand Colors */
+  --c-primary: #7A5C46;
+  --c-secondary: #A58A76;
+  --c-accent: #6F8A68;
+  --c-accent-subtle: #8FA38A;
+  --c-bg: #F8F7F4;
+  --c-surface: #FFFFFF;
+  --c-border: #E8E5E1;
+  --c-muted: #5E5A56;
+  --c-text: #1F1F1F;
+  --c-text-sec: #6B6B6B;
+
+  /* Status Colors */
+  --c-status-saved-bg: #E8E5E1;
+  --c-status-saved-txt: #5E5A56;
+  --c-status-applied-bg: rgba(108, 130, 153, 0.15);
+  --c-status-applied-txt: #6C8299;
+  --c-status-interview-bg: rgba(184, 134, 63, 0.15);
+  --c-status-interview-txt: #B8863F;
+  --c-status-offer-bg: rgba(111, 138, 104, 0.15);
+  --c-status-offer-txt: #6F8A68;
+  --c-status-rejected-bg: rgba(181, 101, 74, 0.15);
+  --c-status-rejected-txt: #B5654A;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--c-bg);
+  color: var(--c-text);
+}
+
+h1, h2, h3, .font-heading {
+  font-family: var(--font-heading);
+  color: var(--c-primary);
+}
