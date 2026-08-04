@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { X } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Input, Textarea } from './ui/Input';
+import { Alert } from './ui/Alert';
 import { addJob, updateJobDetails, type JobPayload } from '../api/jobs';
 import { getErrorMessage } from '../api/client';
 import type { JobApplicationResponse } from '../types';
@@ -60,11 +61,7 @@ export function AddJobModal({ isOpen, onClose, onSaved, editingJob }: AddJobModa
 
         <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
           <div className="overflow-y-auto pr-2 flex-1">
-            {error && (
-              <div className="mb-4 p-3 bg-[#B5654A]/10 border border-[#B5654A]/20 text-[#B5654A] text-sm rounded-md">
-                {error}
-              </div>
-            )}
+            {error && <Alert className="mb-4">{error}</Alert>}
             <Input
               label="Job Title"
               placeholder="e.g. Software Engineer"

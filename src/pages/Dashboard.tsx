@@ -6,6 +6,7 @@ import { getErrorMessage } from '../api/client';
 import type { JobApplicationResponse } from '../types';
 import { Button } from '../components/ui/Button';
 import { StatusBadge } from '../components/ui/StatusBadge';
+import { Alert } from '../components/ui/Alert';
 import { AddJobModal } from '../components/AddJobModal';
 
 export function Dashboard() {
@@ -95,11 +96,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      {error && (
-        <p className="mb-4 rounded-md bg-[#B5654A]/10 border border-[#B5654A]/20 px-3 py-2 text-sm text-[#B5654A]">
-          {error}
-        </p>
-      )}
+      {error && <Alert className="mb-4">{error}</Alert>}
 
       <div className="bg-white border border-[#E8E5E1] rounded-lg shadow-sm overflow-hidden">
         {loading ? (

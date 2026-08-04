@@ -1,11 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { Alert } from '../components/ui/Alert';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -31,12 +31,7 @@ export function Login() {
 
   return (
     <AuthLayout title="Welcome back" subtitle="Enter your details to access your dashboard.">
-      {error && (
-        <div className="mb-6 p-3 bg-[#B5654A]/10 border border-[#B5654A]/20 text-[#B5654A] text-sm rounded-md flex items-start">
-          <X className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
-          {error}
-        </div>
-      )}
+      {error && <Alert className="mb-6">{error}</Alert>}
       <form onSubmit={handleSubmit}>
         <Input
           label="Email address"

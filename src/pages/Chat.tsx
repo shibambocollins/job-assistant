@@ -4,6 +4,7 @@ import { getHistory, sendMessage } from '../api/chat';
 import { getErrorMessage } from '../api/client';
 import type { ChatResponse } from '../types';
 import { Button } from '../components/ui/Button';
+import { Alert } from '../components/ui/Alert';
 
 interface JobContext {
   jobTitle: string;
@@ -100,11 +101,7 @@ export function Chat() {
         <div ref={endRef} />
       </div>
 
-      {error && (
-        <p className="mx-4 mb-2 rounded-md bg-[#B5654A]/10 border border-[#B5654A]/20 px-3 py-2 text-sm text-[#B5654A]">
-          {error}
-        </p>
-      )}
+      {error && <Alert className="mx-4 mb-2">{error}</Alert>}
 
       <div className="p-4 bg-white border-t border-[#E8E5E1] shrink-0">
         <form onSubmit={handleSend} className="flex gap-3">

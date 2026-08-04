@@ -8,6 +8,7 @@ import { getErrorMessage } from '../api/client';
 import type { AnalysisResponse, ApplicationStatus, JobApplicationResponse } from '../types';
 import { Button } from '../components/ui/Button';
 import { STATUS_OPTIONS, StatusBadge, statusLabel } from '../components/ui/StatusBadge';
+import { Alert } from '../components/ui/Alert';
 
 export function JobDetail() {
   const { id } = useParams<{ id: string }>();
@@ -98,11 +99,7 @@ export function JobDetail() {
         <ChevronLeft className="w-4 h-4 mr-1" /> Back to pipeline
       </button>
 
-      {error && (
-        <p className="mb-4 rounded-md bg-[#B5654A]/10 border border-[#B5654A]/20 px-3 py-2 text-sm text-[#B5654A]">
-          {error}
-        </p>
-      )}
+      {error && <Alert className="mb-4">{error}</Alert>}
 
       <div className="bg-white border border-[#E8E5E1] shadow-sm rounded-lg p-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
