@@ -38,8 +38,13 @@ apiClient.interceptors.request.use((config) => {
 });
 
 export function getErrorMessage(error: unknown): string {
-  if (axios.isAxiosError(error) && error.response?.data?.message) {
-    return error.response.data.message as string;
+  if (axios.isAxiosError(error)) {
+    if (error.response?.data?.message) {
+      return error.response.data.message as string;
+    }
+    if (!error.response) {
+      return "Can't reach the server. Check that the backend is running and try again.";
+    }
   }
   return 'Something went wrong. Please try again.';
 }
