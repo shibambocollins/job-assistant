@@ -39,7 +39,8 @@ export async function resetPassword(token: string, newPassword: string): Promise
 
 export interface CurrentUser {
   email: string;
-  authorities: { authority: string }[];
+  fullName: string;
+  createdAt: string;
 }
 
 export async function getCurrentUser(): Promise<CurrentUser> {

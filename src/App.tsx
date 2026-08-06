@@ -11,6 +11,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Cv } from './pages/Cv';
 import { JobDetail } from './pages/JobDetail';
 import { Chat } from './pages/Chat';
+import { Profile } from './pages/Profile';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { NotFound } from './pages/NotFound';
@@ -33,6 +34,7 @@ function App() {
             <Route element={<AuthenticatedLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/cv" element={<Cv />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/jobs/:id" element={<JobDetail />} />
               <Route path="/chat" element={<Chat />} />
             </Route>

@@ -57,7 +57,7 @@ export function Chat() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] max-w-4xl mx-auto w-full bg-white shadow-sm border-l border-r border-[#E8E5E1]">
+    <div className="flex flex-col flex-1 min-h-[70vh] max-w-4xl mx-auto w-full bg-white shadow-sm border-l border-r border-[#E8E5E1]">
       <div className="h-16 border-b border-[#E8E5E1] px-6 flex items-center justify-between shrink-0 bg-[#F8F7F4]">
         <div>
           <h2 className="font-medium text-[#1F1F1F]">Interview Prep Assistant</h2>

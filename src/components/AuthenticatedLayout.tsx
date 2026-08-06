@@ -6,11 +6,13 @@ import { AppFooter } from './AppFooter';
 export function AuthenticatedLayout() {
   return (
     <ProtectedRoute>
-      <AppNav />
-      <main>
-        <Outlet />
-      </main>
-      <AppFooter />
+      <div className="min-h-screen flex flex-col">
+        <AppNav />
+        <main className="flex-1 flex flex-col">
+          <Outlet />
+        </main>
+        <AppFooter />
+      </div>
     </ProtectedRoute>
   );
 }
