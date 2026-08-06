@@ -19,7 +19,7 @@ export function Dashboard() {
   const [editingJob, setEditingJob] = useState<JobApplicationResponse | null>(null);
   const navigate = useNavigate();
 
-  useDocumentTitle('Dashboard — Job Assistant');
+  useDocumentTitle('Dashboard | Job Assistant AI');
 
   async function loadApplications() {
     setLoading(true);

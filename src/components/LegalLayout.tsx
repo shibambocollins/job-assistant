@@ -14,7 +14,7 @@ export function LegalLayout({ title, lastUpdated, children }: LegalLayoutProps) 
       <header className="bg-white border-b border-[#E8E5E1]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center">
           <Link to="/" className="font-heading text-xl text-[#7A5C46]">
-            Job Assistant
+            Job Assistant AI
           </Link>
         </div>
       </header>

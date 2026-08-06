@@ -19,7 +19,7 @@ export function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  useDocumentTitle('Sign In — Job Assistant');
+  useDocumentTitle('Sign In | Job Assistant AI');
 
   const emailError = emailTouched && email.length > 0 && !isValidEmail(email) ? 'Enter a valid email address.' : undefined;
   const canSubmit = isValidEmail(email) && password.length > 0 && !loading;

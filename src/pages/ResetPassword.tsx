@@ -20,7 +20,7 @@ export function ResetPassword() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useDocumentTitle('Choose New Password — Job Assistant');
+  useDocumentTitle('Choose New Password | Job Assistant AI');
 
   if (!token) {
     return (

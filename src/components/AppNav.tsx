@@ -36,7 +36,7 @@ export function AppNav() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link to="/dashboard" className="font-heading text-xl text-[#7A5C46]">
-            Job Assistant
+            Job Assistant AI
           </Link>
           <nav className="hidden md:flex space-x-1">
             {NAV_LINKS.map((link) => (

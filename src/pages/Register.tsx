@@ -21,7 +21,7 @@ export function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  useDocumentTitle('Create Account — Job Assistant');
+  useDocumentTitle('Create Account | Job Assistant AI');
 
   const emailError = emailTouched && email.length > 0 && !isValidEmail(email) ? 'Enter a valid email address.' : undefined;
   const passwordError = passwordTouched ? getPasswordError(password) : undefined;

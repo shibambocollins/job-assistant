@@ -24,7 +24,7 @@ export function Chat() {
   const [error, setError] = useState<string | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
-  useDocumentTitle('Interview Prep — Job Assistant');
+  useDocumentTitle('Interview Prep | Job Assistant AI');
 
   useEffect(() => {
     getHistory()

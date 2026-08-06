@@ -35,7 +35,7 @@ export function Cv() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounter = useRef(0);
 
-  useDocumentTitle('Your CV — Job Assistant');
+  useDocumentTitle('Your CV | Job Assistant AI');
 
   async function load() {
     setLoading(true);

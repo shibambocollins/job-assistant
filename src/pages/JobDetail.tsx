@@ -10,6 +10,7 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Button } from '../components/ui/Button';
 import { STATUS_OPTIONS, StatusBadge, statusLabel } from '../components/ui/StatusBadge';
 import { Alert } from '../components/ui/Alert';
+import { ScoreRing } from '../components/ScoreRing';
 
 export function JobDetail() {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,7 @@ export function JobDetail() {
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useDocumentTitle(job ? `${job.jobTitle} — Job Assistant` : 'Job Details — Job Assistant');
+  useDocumentTitle(job ? `${job.jobTitle} | Job Assistant AI` : 'Job Details | Job Assistant AI');
 
   async function load() {
     setLoading(true);
@@ -176,23 +177,14 @@ export function JobDetail() {
           <>
             <div className="flex flex-col sm:flex-row gap-8 mb-8 pb-8 border-b border-[#E8E5E1]">
               <div className="flex flex-col items-center justify-center shrink-0">
-                <div className="w-24 h-24 rounded-full border-[6px] border-[#F8F7F4] flex items-center justify-center relative">
-                  <svg className="absolute inset-0 w-full h-full transform -rotate-90">
-                    <circle
-                      cx="48"
-                      cy="48"
-                      r="45"
-                      fill="none"
-                      stroke="#6F8A68"
-                      strokeWidth="6"
-                      strokeDasharray="283"
-                      strokeDashoffset={283 - (283 * analysis.matchScore) / 100}
-                    />
-                  </svg>
-                  <span className="text-3xl font-heading text-[#1F1F1F]">
-                    {analysis.matchScore}
-                    <span className="text-lg text-[#6B6B6B]">%</span>
-                  </span>
+                <div className="relative w-24 h-24">
+                  <ScoreRing score={analysis.matchScore} size={96} strokeWidth={6} />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-3xl font-heading text-[#1F1F1F]">
+                      {analysis.matchScore}
+                      <span className="text-lg text-[#6B6B6B]">%</span>
+                    </span>
+                  </div>
                 </div>
                 <span className="text-sm font-medium mt-3 text-[#6F8A68]">
                   {analysis.matchScore >= 80 ? 'Strong Match' : analysis.matchScore >= 50 ? 'Moderate Match' : 'Weak Match'}

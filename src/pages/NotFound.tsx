@@ -8,7 +8,7 @@ export function NotFound() {
   const { isAuthenticated } = useAuth();
   const homeHref = isAuthenticated ? '/dashboard' : '/';
 
-  useDocumentTitle('Page Not Found — Job Assistant');
+  useDocumentTitle('Page Not Found | Job Assistant AI');
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">

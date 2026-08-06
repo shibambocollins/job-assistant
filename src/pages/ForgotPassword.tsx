@@ -16,7 +16,7 @@ export function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
-  useDocumentTitle('Reset Password — Job Assistant');
+  useDocumentTitle('Reset Password | Job Assistant AI');
 
   const emailError = emailTouched && email.length > 0 && !isValidEmail(email) ? 'Enter a valid email address.' : undefined;
 

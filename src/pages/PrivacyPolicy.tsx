@@ -1,16 +1,16 @@
 import { LegalLayout, LegalSection } from '../components/LegalLayout';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
-const CONTACT_EMAIL = '[your-email-here]';
+const CONTACT_EMAIL = 'ntsobokwanec@gmail.com';
 
 export function PrivacyPolicy() {
-  useDocumentTitle('Privacy Policy — Job Assistant');
+  useDocumentTitle('Privacy Policy | Job Assistant AI');
 
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="August 2026">
       <LegalSection title="The short version">
         <p>
-          Job Assistant is a student project built to help people match their CV against real job postings. This
+          Job Assistant AI is a student project built to help people match their CV against real job postings. This
           page explains, in plain language, what information we collect, why we collect it, who else sees it, and
           what you can do about it.
         </p>

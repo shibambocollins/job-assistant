@@ -1,27 +1,27 @@
 import { LegalLayout, LegalSection } from '../components/LegalLayout';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
-const CONTACT_EMAIL = '[your-email-here]';
+const CONTACT_EMAIL = 'ntsobokwanec@gmail.com';
 
 export function TermsOfService() {
-  useDocumentTitle('Terms of Service — Job Assistant');
+  useDocumentTitle('Terms of Service | Job Assistant AI');
 
   return (
     <LegalLayout title="Terms of Service" lastUpdated="August 2026">
       <LegalSection title="What this is">
         <p>
-          Job Assistant is a personal, student-built project — not a registered company or a commercial product. By
-          using it, you're agreeing to the terms below, written as plainly as we can manage.
+          Job Assistant AI is a personal, student-built project — not a registered company or a commercial product.
+          By using it, you're agreeing to the terms below, written as plainly as we can manage.
         </p>
       </LegalSection>
 
       <LegalSection title="The service is provided as-is">
         <p>
-          Job Assistant is provided "as-is" and "as-available," with no warranties of any kind. We don't guarantee
-          the service will be available at all times, free of bugs, or uninterrupted. We also don't guarantee the
-          accuracy of AI-generated content — match scores, extracted CV data, suggestions, and chat responses are
-          produced by an AI model and can be wrong, incomplete, or misleading. Always use your own judgment before
-          acting on them, especially for something as important as a job application.
+          Job Assistant AI is provided "as-is" and "as-available," with no warranties of any kind. We don't
+          guarantee the service will be available at all times, free of bugs, or uninterrupted. We also don't
+          guarantee the accuracy of AI-generated content — match scores, extracted CV data, suggestions, and chat
+          responses are produced by an AI model and can be wrong, incomplete, or misleading. Always use your own
+          judgment before acting on them, especially for something as important as a job application.
         </p>
         <p>The service is not warranted to be fit for any particular purpose beyond what's described on the app itself.</p>
       </LegalSection>
@@ -45,8 +45,8 @@ export function TermsOfService() {
 
       <LegalSection title="About this project">
         <p>
-          Job Assistant is built and maintained as a personal/student project, not by a registered business entity.
-          It may change, be paused, or be discontinued at any time without notice.
+          Job Assistant AI is built and maintained as a personal/student project, not by a registered business
+          entity. It may change, be paused, or be discontinued at any time without notice.
         </p>
       </LegalSection>
 
