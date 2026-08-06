@@ -47,3 +47,15 @@ export async function getCurrentUser(): Promise<CurrentUser> {
   const { data } = await apiClient.get<CurrentUser>('/auth/me');
   return data;
 }
+
+export async function changePassword(currentPassword: string, newPassword: string): Promise<{ message: string }> {
+  const { data } = await apiClient.post<{ message: string }>('/auth/change-password', {
+    currentPassword,
+    newPassword,
+  });
+  return data;
+}
+
+export async function deleteAccount(): Promise<void> {
+  await apiClient.delete('/auth/me');
+}
