@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../api/auth';
 import { getErrorMessage } from '../api/client';
+import { getPasswordError } from '../lib/validation';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
@@ -14,6 +15,7 @@ export function ResetPassword() {
   const navigate = useNavigate();
 
   const [password, setPassword] = useState('');
+  const [passwordTouched, setPasswordTouched] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -35,6 +37,9 @@ export function ResetPassword() {
     );
   }
 
+  const passwordError = passwordTouched ? getPasswordError(password) : undefined;
+  const confirmError = confirmPassword.length > 0 && confirmPassword !== password ? 'Passwords do not match.' : undefined;
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -53,26 +58,34 @@ export function ResetPassword() {
     }
   }
 
-  const canSubmit = password.length >= 8 && confirmPassword.length > 0 && !loading;
+  const canSubmit = !getPasswordError(password) && confirmPassword === password && !loading;
 
   return (
     <AuthLayout title="Choose a new password">
       {error && <Alert className="mb-6">{error}</Alert>}
-      <form onSubmit={handleSubmit}>
-        <PasswordInput
-          label="New password"
-          placeholder="••••••••"
-          required
-          minLength={8}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <form onSubmit={handleSubmit} noValidate>
+        <div className="mb-1">
+          <PasswordInput
+            label="New password"
+            placeholder="••••••••"
+            required
+            minLength={8}
+            value={password}
+            error={passwordError}
+            onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => setPasswordTouched(true)}
+          />
+          {!passwordError && (
+            <p className="text-xs text-[#6B6B6B] -mt-3 mb-4">At least 8 characters. Avoid common passwords.</p>
+          )}
+        </div>
         <PasswordInput
           label="Confirm new password"
           placeholder="••••••••"
           required
           minLength={8}
           value={confirmPassword}
+          error={confirmError}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <Button className="w-full mt-2" type="submit" disabled={!canSubmit}>

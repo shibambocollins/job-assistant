@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /cv
+Disallow: /jobs/
+Disallow: /chat
+Disallow: /reset-password
+
+Sitemap: https://job-assistant-web.vercel.app/sitemap.xml

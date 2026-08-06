@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
-import { isValidEmail } from '../lib/validation';
+import { getPasswordError, isValidEmail } from '../lib/validation';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
@@ -15,6 +15,7 @@ export function Register() {
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState('');
+  const [passwordTouched, setPasswordTouched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -23,7 +24,8 @@ export function Register() {
   useDocumentTitle('Create Account — Job Assistant');
 
   const emailError = emailTouched && email.length > 0 && !isValidEmail(email) ? 'Enter a valid email address.' : undefined;
-  const canSubmit = fullName.trim().length > 0 && isValidEmail(email) && password.length >= 8 && !loading;
+  const passwordError = passwordTouched ? getPasswordError(password) : undefined;
+  const canSubmit = fullName.trim().length > 0 && isValidEmail(email) && !getPasswordError(password) && !loading;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -46,7 +48,6 @@ export function Register() {
         <Input
           label="Full name"
           type="text"
-          placeholder="Jane Doe"
           required
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
@@ -54,7 +55,6 @@ export function Register() {
         <Input
           label="Email address"
           type="email"
-          placeholder="name@example.com"
           required
           value={email}
           error={emailError}
@@ -68,9 +68,13 @@ export function Register() {
             required
             minLength={8}
             value={password}
+            error={passwordError}
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => setPasswordTouched(true)}
           />
-          <p className="text-xs text-[#6B6B6B] -mt-3">Must be at least 8 characters long.</p>
+          {!passwordError && (
+            <p className="text-xs text-[#6B6B6B] -mt-3">At least 8 characters. Avoid common passwords.</p>
+          )}
         </div>
         <Button className="w-full mt-2" type="submit" disabled={!canSubmit}>
           {loading ? 'Creating account…' : 'Create account'}

@@ -56,7 +56,6 @@ export function ForgotPassword() {
         <Input
           label="Email address"
           type="email"
-          placeholder="name@example.com"
           required
           value={email}
           error={emailError}

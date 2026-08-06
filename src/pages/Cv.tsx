@@ -113,7 +113,7 @@ export function Cv() {
   const skills = cv ? parseSkills(cv.skillsJson) : [];
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <h1 className="text-2xl mb-2">Your Profile</h1>
       <p className="text-[#6B6B6B] text-sm mb-8">
         Your CV is used to calculate match scores and generate personalized interview questions.

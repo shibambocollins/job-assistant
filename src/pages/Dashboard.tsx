@@ -76,16 +76,16 @@ export function Dashboard() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
           <h1 className="text-2xl mb-1">Your Pipeline</h1>
           <p className="text-[#6B6B6B] text-sm">Manage and analyze your active applications.</p>
         </div>
-        <div className="flex items-center gap-3 w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <Button
             variant="secondary"
-            className="flex-1 md:flex-none"
+            className="w-full sm:w-auto"
             onClick={() => {
               setEditingJob(null);
               setIsModalOpen(true);
@@ -93,7 +93,7 @@ export function Dashboard() {
           >
             <Plus className="w-4 h-4 mr-2" /> Add manually
           </Button>
-          <Button variant="primary" className="flex-1 md:flex-none" onClick={handleDiscover} disabled={discovering}>
+          <Button variant="primary" className="w-full sm:w-auto" onClick={handleDiscover} disabled={discovering}>
             <Search className="w-4 h-4 mr-2" /> {discovering ? 'Discovering…' : 'Discover jobs'}
           </Button>
         </div>
@@ -122,54 +122,56 @@ export function Dashboard() {
             </Button>
           </div>
         ) : (
-          <table className="w-full text-left text-sm">
-            <thead className="bg-[#F8F7F4] border-b border-[#E8E5E1] text-[#5E5A56]">
-              <tr>
-                <th className="px-6 py-3 font-medium">Role & Company</th>
-                <th className="px-6 py-3 font-medium hidden sm:table-cell">Location</th>
-                <th className="px-6 py-3 font-medium">Status</th>
-                <th className="px-6 py-3 font-medium hidden md:table-cell">Added</th>
-                <th className="px-6 py-3 font-medium text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#E8E5E1]">
-              {applications.map((job) => (
-                <tr
-                  key={job.id}
-                  onClick={() => navigate(`/jobs/${job.id}`)}
-                  className="hover:bg-[#F8F7F4]/50 cursor-pointer transition-colors group"
-                >
-                  <td className="px-6 py-4">
-                    <div className="font-medium text-[#1F1F1F] mb-0.5">{job.jobTitle}</div>
-                    <div className="text-[#6B6B6B]">{job.company}</div>
-                  </td>
-                  <td className="px-6 py-4 hidden sm:table-cell text-[#6B6B6B]">{job.location}</td>
-                  <td className="px-6 py-4">
-                    <StatusBadge status={job.status} />
-                  </td>
-                  <td className="px-6 py-4 hidden md:table-cell text-[#6B6B6B]">
-                    {new Date(job.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={(e) => handleEdit(job, e)}
-                        className="p-1.5 text-[#6B6B6B] hover:text-[#7A5C46] rounded-md hover:bg-[#E8E5E1]/50"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={(e) => handleDelete(job.id, e)}
-                        className="p-1.5 text-[#6B6B6B] hover:text-[#B5654A] rounded-md hover:bg-[#B5654A]/10"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-[#F8F7F4] border-b border-[#E8E5E1] text-[#5E5A56]">
+                <tr>
+                  <th className="px-6 py-3 font-medium">Role & Company</th>
+                  <th className="px-6 py-3 font-medium hidden sm:table-cell">Location</th>
+                  <th className="px-6 py-3 font-medium">Status</th>
+                  <th className="px-6 py-3 font-medium hidden md:table-cell">Added</th>
+                  <th className="px-6 py-3 font-medium text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-[#E8E5E1]">
+                {applications.map((job) => (
+                  <tr
+                    key={job.id}
+                    onClick={() => navigate(`/jobs/${job.id}`)}
+                    className="hover:bg-[#F8F7F4]/50 cursor-pointer transition-colors group"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="font-medium text-[#1F1F1F] mb-0.5">{job.jobTitle}</div>
+                      <div className="text-[#6B6B6B]">{job.company}</div>
+                    </td>
+                    <td className="px-6 py-4 hidden sm:table-cell text-[#6B6B6B]">{job.location}</td>
+                    <td className="px-6 py-4">
+                      <StatusBadge status={job.status} />
+                    </td>
+                    <td className="px-6 py-4 hidden md:table-cell text-[#6B6B6B]">
+                      {new Date(job.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity focus-within:opacity-100">
+                        <button
+                          onClick={(e) => handleEdit(job, e)}
+                          className="p-1.5 text-[#6B6B6B] hover:text-[#7A5C46] rounded-md hover:bg-[#E8E5E1]/50"
+                        >
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={(e) => handleDelete(job.id, e)}
+                          className="p-1.5 text-[#6B6B6B] hover:text-[#B5654A] rounded-md hover:bg-[#B5654A]/10"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

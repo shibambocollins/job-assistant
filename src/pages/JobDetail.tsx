@@ -79,12 +79,12 @@ export function JobDetail() {
   }
 
   if (loading) {
-    return <div className="max-w-5xl mx-auto px-6 py-8 text-[#6B6B6B]">Loading…</div>;
+    return <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-[#6B6B6B]">Loading…</div>;
   }
 
   if (!job) {
     return (
-      <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <p className="text-[#6B6B6B] mb-4">Couldn't find that application.</p>
         <Button variant="secondary" onClick={() => navigate('/dashboard')}>
           Back to pipeline
@@ -94,7 +94,7 @@ export function JobDetail() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <button
         onClick={() => navigate('/dashboard')}
         className="flex items-center text-[#6B6B6B] hover:text-[#1F1F1F] text-sm mb-6 transition-colors"
@@ -115,7 +115,7 @@ export function JobDetail() {
             <span>Added {new Date(job.createdAt).toLocaleDateString()}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="relative inline-block text-left">
             <button
               onClick={() => setStatusMenuOpen((open) => !open)}

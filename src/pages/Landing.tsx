@@ -15,7 +15,7 @@ export function Landing() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl w-full mx-auto">
+      <nav className="flex items-center justify-between px-4 sm:px-8 py-6 max-w-7xl w-full mx-auto">
         <div className="font-heading text-2xl tracking-tight">Job Assistant</div>
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-[#5E5A56]">
           <a href="#features" className="hover:text-[#1F1F1F]">
@@ -32,21 +32,21 @@ export function Landing() {
         </div>
       </nav>
 
-      <section className="flex-1 flex flex-col md:flex-row items-center justify-between px-8 py-20 max-w-7xl mx-auto w-full gap-16">
+      <section className="flex-1 flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 py-20 max-w-7xl mx-auto w-full gap-16">
         <div className="flex-1 space-y-8">
-          <h1 className="text-5xl md:text-6xl leading-tight">Stop guessing why you're not getting responses.</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl leading-tight">Stop guessing why you're not getting responses.</h1>
           <p className="text-lg text-[#6B6B6B] max-w-md">
             Job Assistant reads your CV, finds matching positions, and gives you actionable feedback on how to
             improve your fit before you apply.
           </p>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/register">
-              <Button variant="primary" className="px-6 py-3 text-base">
+              <Button variant="primary" className="w-full sm:w-auto px-6 py-3 text-base">
                 Create your account
               </Button>
             </Link>
             <Link to="/login">
-              <Button variant="secondary" className="px-6 py-3 text-base">
+              <Button variant="secondary" className="w-full sm:w-auto px-6 py-3 text-base">
                 I already have one
               </Button>
             </Link>
@@ -77,7 +77,7 @@ export function Landing() {
       </section>
 
       <section id="features" className="bg-white border-t border-[#E8E5E1] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <h2 className="text-3xl mb-12">Practical tools for serious job seekers.</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -121,8 +121,16 @@ export function Landing() {
         </div>
       </section>
 
-      <footer className="py-8 px-8 border-t border-[#E8E5E1] flex justify-center items-center max-w-7xl mx-auto w-full mt-auto">
+      <footer className="py-8 px-4 sm:px-8 border-t border-[#E8E5E1] flex flex-col sm:flex-row justify-between items-center gap-4 max-w-7xl mx-auto w-full mt-auto">
         <span className="font-heading text-[#7A5C46]">Job Assistant</span>
+        <div className="flex items-center gap-6 text-sm text-[#6B6B6B]">
+          <Link to="/privacy-policy" className="hover:text-[#1F1F1F]">
+            Privacy Policy
+          </Link>
+          <Link to="/terms-of-service" className="hover:text-[#1F1F1F]">
+            Terms of Service
+          </Link>
+        </div>
       </footer>
     </div>
   );
