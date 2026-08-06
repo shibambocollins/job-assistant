@@ -21,13 +21,13 @@
   --c-status-saved-bg: #E8E5E1;
   --c-status-saved-txt: #5E5A56;
   --c-status-applied-bg: rgba(108, 130, 153, 0.15);
-  --c-status-applied-txt: #6C8299;
+  --c-status-applied-txt: #4F6478;
   --c-status-interview-bg: rgba(184, 134, 63, 0.15);
-  --c-status-interview-txt: #B8863F;
+  --c-status-interview-txt: #8F6423;
   --c-status-offer-bg: rgba(111, 138, 104, 0.15);
-  --c-status-offer-txt: #6F8A68;
+  --c-status-offer-txt: #5A7154;
   --c-status-rejected-bg: rgba(181, 101, 74, 0.15);
-  --c-status-rejected-txt: #B5654A;
+  --c-status-rejected-txt: #9C4E38;
 }
 
 html {

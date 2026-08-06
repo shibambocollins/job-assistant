@@ -76,7 +76,7 @@ export function AppNav() {
           <div className="relative" ref={profileMenuRef}>
             <button
               onClick={() => setProfileMenuOpen((open) => !open)}
-              className="w-8 h-8 bg-[#A58A76] rounded-full flex items-center justify-center text-white text-sm font-medium shrink-0 hover:brightness-95 transition"
+              className="w-8 h-8 bg-[#8A6F5A] rounded-full flex items-center justify-center text-white text-sm font-medium shrink-0 hover:brightness-95 transition"
               aria-label="Profile menu"
               aria-expanded={profileMenuOpen}
             >
@@ -97,7 +97,7 @@ export function AppNav() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm text-[#B5654A] hover:bg-[#B5654A]/10"
+                  className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm text-[#9C4E38] hover:bg-[#B5654A]/10"
                 >
                   <LogOut className="w-4 h-4" /> Log out
                 </button>

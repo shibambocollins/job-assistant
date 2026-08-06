@@ -6,6 +6,7 @@ export interface JobPayload {
   company: string;
   description: string;
   location?: string;
+  postingUrl?: string;
 }
 
 export async function addJob(payload: JobPayload): Promise<JobApplicationResponse> {

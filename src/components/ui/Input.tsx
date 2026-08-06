@@ -15,7 +15,7 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
           ${error ? 'border-[#B5654A]' : 'border-[#E8E5E1]'} ${className}`}
         {...props}
       />
-      {error && <span className="text-xs text-[#B5654A]">{error}</span>}
+      {error && <span className="text-xs text-[#9C4E38]">{error}</span>}
     </div>
   );
 }
@@ -45,7 +45,7 @@ export function PasswordInput({ label, error, className = '', ...props }: Passwo
           {visible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
         </button>
       </div>
-      {error && <span className="text-xs text-[#B5654A]">{error}</span>}
+      {error && <span className="text-xs text-[#9C4E38]">{error}</span>}
     </div>
   );
 }
@@ -64,7 +64,7 @@ export function Textarea({ label, error, className = '', ...props }: TextareaPro
           ${error ? 'border-[#B5654A]' : 'border-[#E8E5E1]'} ${className}`}
         {...props}
       />
-      {error && <span className="text-xs text-[#B5654A]">{error}</span>}
+      {error && <span className="text-xs text-[#9C4E38]">{error}</span>}
     </div>
   );
 }

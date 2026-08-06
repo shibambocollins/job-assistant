@@ -93,7 +93,7 @@ export function Profile() {
         <div className="space-y-6">
           <div className="bg-white border border-[#E8E5E1] shadow-sm rounded-lg p-6 space-y-6">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-[#A58A76] rounded-full flex items-center justify-center text-white text-xl font-medium shrink-0">
+              <div className="w-14 h-14 bg-[#8A6F5A] rounded-full flex items-center justify-center text-white text-xl font-medium shrink-0">
                 {user.email.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0">
@@ -189,7 +189,7 @@ export function Profile() {
           </div>
 
           <div className="bg-white border border-[#B5654A]/30 shadow-sm rounded-lg p-6">
-            <h2 className="font-heading text-lg mb-1 text-[#B5654A]">Danger zone</h2>
+            <h2 className="font-heading text-lg mb-1 text-[#9C4E38]">Danger zone</h2>
             <p className="text-sm text-[#6B6B6B] mb-4">
               Permanently delete your account, CV, job applications, and chat history. This cannot be undone.
             </p>

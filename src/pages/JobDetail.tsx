@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Check, ChevronDown, ChevronLeft, MessageSquare, Sparkles } from 'lucide-react';
+import { Check, ChevronDown, ChevronLeft, ExternalLink, MessageSquare, Sparkles } from 'lucide-react';
 import { getMyApplications, updateStatus } from '../api/jobs';
 import { analyzeJobApplication, getLatestAnalysis } from '../api/analysis';
 import { getErrorMessage } from '../api/client';
@@ -115,6 +115,16 @@ export function JobDetail() {
             <span>•</span>
             <span>Added {new Date(job.createdAt).toLocaleDateString()}</span>
           </div>
+          {job.postingUrl && (
+            <a
+              href={job.postingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-[#6F8A68] hover:text-[#5A7154] mt-2 font-medium"
+            >
+              View original posting <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative inline-block text-left">
@@ -186,7 +196,7 @@ export function JobDetail() {
                     </span>
                   </div>
                 </div>
-                <span className="text-sm font-medium mt-3 text-[#6F8A68]">
+                <span className="text-sm font-medium mt-3 text-[#5A7154]">
                   {analysis.matchScore >= 80 ? 'Strong Match' : analysis.matchScore >= 50 ? 'Moderate Match' : 'Weak Match'}
                 </span>
               </div>
@@ -198,7 +208,7 @@ export function JobDetail() {
                     {analysis.strengths.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2.5 py-1 bg-[#6F8A68]/10 text-[#6F8A68] border border-[#6F8A68]/20 rounded-md text-xs font-medium"
+                        className="px-2.5 py-1 bg-[#6F8A68]/10 text-[#5A7154] border border-[#6F8A68]/20 rounded-md text-xs font-medium"
                       >
                         {skill}
                       </span>
@@ -211,7 +221,7 @@ export function JobDetail() {
                     {analysis.missingSkills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2.5 py-1 bg-[#B5654A]/10 text-[#B5654A] border border-[#B5654A]/20 rounded-md text-xs font-medium"
+                        className="px-2.5 py-1 bg-[#B5654A]/10 text-[#9C4E38] border border-[#B5654A]/20 rounded-md text-xs font-medium"
                       >
                         {skill}
                       </span>

@@ -41,6 +41,7 @@ export interface JobApplicationResponse {
   jobTitle: string;
   company: string;
   location: string;
+  postingUrl?: string;
   status: ApplicationStatus;
   appliedDate: string;
   createdAt: string;

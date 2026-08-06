@@ -160,7 +160,7 @@ export function Landing() {
               <span className="font-heading text-3xl text-[#7A5C46]">85%</span>
             </div>
           </div>
-          <p className="text-sm font-medium text-[#6F8A68] mb-1">Strong match</p>
+          <p className="text-sm font-medium text-[#5A7154] mb-1">Strong match</p>
           <p className="text-xs text-[#6B6B6B]">3 skills to highlight · 2 gaps to address</p>
         </div>
       </section>

@@ -14,7 +14,7 @@ interface AddJobModalProps {
   editingJob?: JobApplicationResponse | null;
 }
 
-const emptyForm: JobPayload = { title: '', company: '', location: '', description: '' };
+const emptyForm: JobPayload = { title: '', company: '', location: '', description: '', postingUrl: '' };
 
 export function AddJobModal({ isOpen, onClose, onSaved, editingJob }: AddJobModalProps) {
   const [form, setForm] = useState<JobPayload>(emptyForm);
@@ -25,7 +25,13 @@ export function AddJobModal({ isOpen, onClose, onSaved, editingJob }: AddJobModa
     if (isOpen) {
       setForm(
         editingJob
-          ? { title: editingJob.jobTitle, company: editingJob.company, location: editingJob.location, description: '' }
+          ? {
+              title: editingJob.jobTitle,
+              company: editingJob.company,
+              location: editingJob.location,
+              description: '',
+              postingUrl: editingJob.postingUrl ?? '',
+            }
           : emptyForm
       );
       setError(null);
@@ -81,6 +87,13 @@ export function AddJobModal({ isOpen, onClose, onSaved, editingJob }: AddJobModa
               placeholder="e.g. Remote, or New York"
               value={form.location}
               onChange={(e) => setForm({ ...form, location: e.target.value })}
+            />
+            <Input
+              label="Posting URL (Optional)"
+              type="url"
+              placeholder="https://company.com/careers/job-id"
+              value={form.postingUrl}
+              onChange={(e) => setForm({ ...form, postingUrl: e.target.value })}
             />
             <Textarea
               label="Job Description"

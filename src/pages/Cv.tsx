@@ -135,7 +135,7 @@ export function Cv() {
             <div className="w-12 h-12 bg-[#6F8A68]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <FileUp className="w-6 h-6 text-[#6F8A68]" />
             </div>
-            <h3 className="text-lg font-medium text-[#6F8A68] mb-1">Drop to upload</h3>
+            <h3 className="text-lg font-medium text-[#5A7154] mb-1">Drop to upload</h3>
             <p className="text-[#6B6B6B] text-sm">Release your PDF or Word document here.</p>
           </div>
         ) : loading ? (

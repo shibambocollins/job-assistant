@@ -12,15 +12,15 @@ interface AlertProps {
 
 const VARIANT_STYLES: Record<AlertVariant, { container: string; icon: typeof AlertCircle }> = {
   error: {
-    container: 'bg-[#B5654A]/10 border-[#B5654A]/20 text-[#B5654A]',
+    container: 'bg-[#B5654A]/10 border-[#B5654A]/20 text-[#9C4E38]',
     icon: AlertCircle,
   },
   success: {
-    container: 'bg-[#6F8A68]/10 border-[#6F8A68]/20 text-[#6F8A68]',
+    container: 'bg-[#6F8A68]/10 border-[#6F8A68]/20 text-[#5A7154]',
     icon: CheckCircle2,
   },
   info: {
-    container: 'bg-[#6C8299]/10 border-[#6C8299]/20 text-[#6C8299]',
+    container: 'bg-[#6C8299]/10 border-[#6C8299]/20 text-[#4F6478]',
     icon: Info,
   },
 };

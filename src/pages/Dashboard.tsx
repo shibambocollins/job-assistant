@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Edit2, Plus, Search, Trash2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Edit2, ExternalLink, Plus, Search, Trash2 } from 'lucide-react';
 import { deleteApplication, discoverJobs, getMyApplications } from '../api/jobs';
 import { getErrorMessage } from '../api/client';
 import type { JobApplicationResponse } from '../types';
@@ -10,6 +10,8 @@ import { StatusBadge } from '../components/ui/StatusBadge';
 import { Alert } from '../components/ui/Alert';
 import { AddJobModal } from '../components/AddJobModal';
 
+const PAGE_SIZE = 10;
+
 export function Dashboard() {
   const [applications, setApplications] = useState<JobApplicationResponse[]>([]);
   const [loading, setLoading] = useState(true);
@@ -17,9 +19,17 @@ export function Dashboard() {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingJob, setEditingJob] = useState<JobApplicationResponse | null>(null);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   useDocumentTitle('Dashboard | Job Assistant AI');
+
+  const totalPages = Math.max(1, Math.ceil(applications.length / PAGE_SIZE));
+  const pagedApplications = applications.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
 
   async function loadApplications() {
     setLoading(true);
@@ -27,6 +37,7 @@ export function Dashboard() {
     try {
       const data = await getMyApplications();
       setApplications(data);
+      setPage(1);
     } catch (err) {
       setError(getErrorMessage(err));
     } finally {
@@ -134,14 +145,28 @@ export function Dashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E8E5E1]">
-                {applications.map((job) => (
+                {pagedApplications.map((job) => (
                   <tr
                     key={job.id}
                     onClick={() => navigate(`/jobs/${job.id}`)}
                     className="hover:bg-[#F8F7F4]/50 cursor-pointer transition-colors group"
                   >
                     <td className="px-6 py-4">
-                      <div className="font-medium text-[#1F1F1F] mb-0.5">{job.jobTitle}</div>
+                      <div className="font-medium text-[#1F1F1F] mb-0.5 flex items-center gap-1.5">
+                        {job.jobTitle}
+                        {job.postingUrl && (
+                          <a
+                            href={job.postingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            aria-label={`View original posting for ${job.jobTitle} at ${job.company}`}
+                            className="text-[#6B6B6B] hover:text-[#6F8A68]"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
                       <div className="text-[#6B6B6B]">{job.company}</div>
                     </td>
                     <td className="px-6 py-4 hidden sm:table-cell text-[#6B6B6B]">{job.location}</td>
@@ -171,6 +196,31 @@ export function Dashboard() {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+        {!loading && applications.length > PAGE_SIZE && (
+          <div className="flex items-center justify-between px-6 py-3 border-t border-[#E8E5E1] text-sm text-[#6B6B6B]">
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                aria-label="Previous page"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-[#E8E5E1] hover:bg-[#F8F7F4] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+              >
+                <ChevronLeft className="w-4 h-4" /> Prev
+              </button>
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                aria-label="Next page"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-[#E8E5E1] hover:bg-[#F8F7F4] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+              >
+                Next <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         )}
       </div>
