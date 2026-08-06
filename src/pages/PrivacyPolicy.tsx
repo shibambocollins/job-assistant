@@ -22,11 +22,11 @@ export function PrivacyPolicy() {
           <li>Your email address and a securely hashed version of your password (we never store your password itself).</li>
           <li>Your full name, if you provide one when creating an account.</li>
           <li>
-            The CV file you upload, and the content our AI extracts from it — skills, education, certifications,
+            The CV file you upload, and the content our AI extracts from it: skills, education, certifications,
             projects, and work experience.
           </li>
           <li>
-            Job application tracking data you create or that our discovery feature saves for you — company names,
+            Job application tracking data you create or that our discovery feature saves for you: company names,
             job titles, locations, and the status of each application (saved, applied, interview, etc.).
           </li>
         </ul>
@@ -46,12 +46,12 @@ export function PrivacyPolicy() {
         <p>We rely on a small number of third-party services to make the app work:</p>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <strong>Google Gemini API</strong> — when you upload a CV or request a job-fit analysis, the relevant
+            <strong>Google Gemini API</strong>: when you upload a CV or request a job-fit analysis, the relevant
             text is sent to Google's Gemini API so it can extract structured information and generate suggestions.
             This is the core of how the AI features work.
           </li>
           <li>
-            <strong>The Muse API</strong> — used to discover real job postings for you. No personal or account data
+            <strong>The Muse API</strong>: used to discover real job postings for you. No personal or account data
             is sent to The Muse; we only query it for public job listings.
           </li>
         </ul>
@@ -69,7 +69,7 @@ export function PrivacyPolicy() {
         <p>You're in control of your data. Specifically, you can:</p>
         <ul className="list-disc pl-5 space-y-2">
           <li>Ask what personal data we hold about you.</li>
-          <li>Ask us to delete your account and everything associated with it — your CV, extracted data, and application history.</li>
+          <li>Ask us to delete your account and everything associated with it: your CV, extracted data, and application history.</li>
         </ul>
         <p>
           To make either request, email{' '}
@@ -82,7 +82,7 @@ export function PrivacyPolicy() {
 
       <LegalSection title="A note on security">
         <p>
-          This application is built as a student project. We follow reasonable security practices — passwords are
+          This application is built as a student project. We follow reasonable security practices: passwords are
           hashed, CV files are stored privately rather than publicly, and access to your data requires
           authentication. That said, no system, student-built or otherwise, can be guaranteed 100% secure. Please
           don't treat this app as a place to store anything you wouldn't be comfortable losing.

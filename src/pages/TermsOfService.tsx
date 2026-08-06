@@ -10,7 +10,7 @@ export function TermsOfService() {
     <LegalLayout title="Terms of Service" lastUpdated="August 2026">
       <LegalSection title="What this is">
         <p>
-          Job Assistant AI is a personal, student-built project — not a registered company or a commercial product.
+          Job Assistant AI is a personal, student-built project, not a registered company or a commercial product.
           By using it, you're agreeing to the terms below, written as plainly as we can manage.
         </p>
       </LegalSection>
@@ -19,7 +19,7 @@ export function TermsOfService() {
         <p>
           Job Assistant AI is provided "as-is" and "as-available," with no warranties of any kind. We don't
           guarantee the service will be available at all times, free of bugs, or uninterrupted. We also don't
-          guarantee the accuracy of AI-generated content — match scores, extracted CV data, suggestions, and chat
+          guarantee the accuracy of AI-generated content: match scores, extracted CV data, suggestions, and chat
           responses are produced by an AI model and can be wrong, incomplete, or misleading. Always use your own
           judgment before acting on them, especially for something as important as a job application.
         </p>
@@ -29,7 +29,7 @@ export function TermsOfService() {
       <LegalSection title="Limitation of liability">
         <p>
           To the maximum extent permitted by law, we are not liable for any loss of data, unauthorized access to
-          your account, or other damages arising from your use of this service — except in cases of gross
+          your account, or other damages arising from your use of this service, except in cases of gross
           negligence on our part. This is a project run without the resources of a company, and we can't offer the
           same guarantees a commercial service would.
         </p>
