@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getHistory, sendMessage } from '../api/chat';
 import { getErrorMessage } from '../api/client';
 import type { ChatResponse } from '../types';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Button } from '../components/ui/Button';
 import { Alert } from '../components/ui/Alert';
 
@@ -22,6 +23,8 @@ export function Chat() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
+
+  useDocumentTitle('Interview Prep — Job Assistant');
 
   useEffect(() => {
     getHistory()

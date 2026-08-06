@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../api/auth';
 import { getErrorMessage } from '../api/client';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
 import { PasswordInput } from '../components/ui/Input';
@@ -16,6 +17,8 @@ export function ResetPassword() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useDocumentTitle('Choose New Password — Job Assistant');
 
   if (!token) {
     return (

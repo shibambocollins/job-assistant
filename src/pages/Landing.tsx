@@ -2,9 +2,12 @@ import { Navigate, Link } from 'react-router-dom';
 import { Target, Activity, MessageSquare, FileText } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function Landing() {
   const { isAuthenticated } = useAuth();
+
+  useDocumentTitle('Job Assistant — Apply with confidence');
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
@@ -39,54 +42,37 @@ export function Landing() {
           <div className="flex items-center space-x-4">
             <Link to="/register">
               <Button variant="primary" className="px-6 py-3 text-base">
-                Get Started
+                Create your account
               </Button>
             </Link>
             <Link to="/login">
               <Button variant="secondary" className="px-6 py-3 text-base">
-                Sign In
+                I already have one
               </Button>
             </Link>
           </div>
         </div>
 
-        <div className="flex-1 w-full max-w-lg aspect-square relative bg-white border border-[#E8E5E1] shadow-sm rounded-lg p-6 flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-[#E8E5E1] pb-4 mb-2">
-            <div className="w-32 h-4 bg-[#E8E5E1] rounded" />
-            <div className="flex gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#F8F7F4]" />
-            </div>
+        <div className="flex-1 w-full max-w-md bg-white border border-[#E8E5E1] shadow-sm rounded-lg p-8 flex flex-col items-center text-center">
+          <span className="text-xs font-medium uppercase tracking-wide text-[#6B6B6B] mb-6">Your fit for this role</span>
+          <div className="w-32 h-32 rounded-full border-[8px] border-[#F8F7F4] flex items-center justify-center relative mb-4">
+            <svg className="absolute inset-0 w-full h-full transform -rotate-90">
+              <circle
+                cx="60"
+                cy="60"
+                r="56"
+                fill="none"
+                stroke="#6F8A68"
+                strokeWidth="8"
+                strokeDasharray="352"
+                strokeDashoffset="53"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="font-heading text-3xl text-[#7A5C46]">85%</span>
           </div>
-          <div className="flex gap-6 h-full">
-            <div className="flex-1 flex flex-col gap-3">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className={`p-4 border border-[#E8E5E1] rounded-md ${i === 1 ? 'border-[#6F8A68] bg-[#6F8A68]/5' : ''}`}>
-                  <div className="w-3/4 h-3 bg-[#5E5A56] rounded mb-2" />
-                  <div className="w-1/2 h-2 bg-[#A58A76] rounded" />
-                </div>
-              ))}
-            </div>
-            <div className="w-2/5 flex flex-col items-center pt-8">
-              <div className="w-24 h-24 rounded-full border-4 border-[#E8E5E1] flex items-center justify-center relative mb-4">
-                <svg className="absolute inset-0 w-full h-full transform -rotate-90">
-                  <circle
-                    cx="44"
-                    cy="44"
-                    r="44"
-                    fill="none"
-                    stroke="#6F8A68"
-                    strokeWidth="4"
-                    strokeDasharray="276"
-                    strokeDashoffset="40"
-                    className="translate-x-1 translate-y-1"
-                  />
-                </svg>
-                <span className="font-heading text-2xl text-[#7A5C46]">85</span>
-              </div>
-              <div className="w-full h-2 bg-[#E8E5E1] rounded mb-2" />
-              <div className="w-2/3 h-2 bg-[#E8E5E1] rounded" />
-            </div>
-          </div>
+          <p className="text-sm font-medium text-[#6F8A68] mb-1">Strong match</p>
+          <p className="text-xs text-[#6B6B6B]">3 skills to highlight · 2 gaps to address</p>
         </div>
       </section>
 
@@ -135,11 +121,8 @@ export function Landing() {
         </div>
       </section>
 
-      <footer className="py-8 px-8 border-t border-[#E8E5E1] flex justify-between items-center max-w-7xl mx-auto w-full mt-auto">
+      <footer className="py-8 px-8 border-t border-[#E8E5E1] flex justify-center items-center max-w-7xl mx-auto w-full mt-auto">
         <span className="font-heading text-[#7A5C46]">Job Assistant</span>
-        <div className="text-sm text-[#6B6B6B] space-x-6">
-          <span>© {new Date().getFullYear()}</span>
-        </div>
       </footer>
     </div>
   );

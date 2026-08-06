@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/AuthContext';
 import { AuthenticatedLayout } from './components/AuthenticatedLayout';
@@ -11,6 +11,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Cv } from './pages/Cv';
 import { JobDetail } from './pages/JobDetail';
 import { Chat } from './pages/Chat';
+import { NotFound } from './pages/NotFound';
 
 const GOOGLE_CLIENT_ID = (import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined) ?? '';
 
@@ -31,7 +32,7 @@ function App() {
               <Route path="/jobs/:id" element={<JobDetail />} />
               <Route path="/chat" element={<Chat />} />
             </Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

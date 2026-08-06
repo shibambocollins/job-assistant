@@ -4,6 +4,7 @@ import { FileText, FileUp } from 'lucide-react';
 import { getMyCV, replaceCV, uploadCV } from '../api/cv';
 import { getErrorMessage } from '../api/client';
 import type { CV } from '../types';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Button } from '../components/ui/Button';
 import { Alert } from '../components/ui/Alert';
 
@@ -33,6 +34,8 @@ export function Cv() {
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounter = useRef(0);
+
+  useDocumentTitle('Your CV — Job Assistant');
 
   async function load() {
     setLoading(true);

@@ -6,6 +6,7 @@ import { getMyApplications, updateStatus } from '../api/jobs';
 import { analyzeJobApplication, getLatestAnalysis } from '../api/analysis';
 import { getErrorMessage } from '../api/client';
 import type { AnalysisResponse, ApplicationStatus, JobApplicationResponse } from '../types';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Button } from '../components/ui/Button';
 import { STATUS_OPTIONS, StatusBadge, statusLabel } from '../components/ui/StatusBadge';
 import { Alert } from '../components/ui/Alert';
@@ -21,6 +22,8 @@ export function JobDetail() {
   const [analyzing, setAnalyzing] = useState(false);
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useDocumentTitle(job ? `${job.jobTitle} — Job Assistant` : 'Job Details — Job Assistant');
 
   async function load() {
     setLoading(true);

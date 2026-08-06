@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getErrorMessage } from '../api/client';
+import { isValidEmail } from '../lib/validation';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { AuthLayout } from '../components/AuthLayout';
 import { Button } from '../components/ui/Button';
 import { Input, PasswordInput } from '../components/ui/Input';
@@ -11,13 +13,17 @@ import { GoogleAuthButton } from '../components/GoogleAuthButton';
 export function Register() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const canSubmit = fullName.trim().length > 0 && email.trim().length > 0 && password.length >= 8 && !loading;
+  useDocumentTitle('Create Account — Job Assistant');
+
+  const emailError = emailTouched && email.length > 0 && !isValidEmail(email) ? 'Enter a valid email address.' : undefined;
+  const canSubmit = fullName.trim().length > 0 && isValidEmail(email) && password.length >= 8 && !loading;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -36,7 +42,7 @@ export function Register() {
   return (
     <AuthLayout title="Create an account" subtitle="Start tracking and analyzing your job applications.">
       {error && <Alert className="mb-6">{error}</Alert>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <Input
           label="Full name"
           type="text"
@@ -51,7 +57,9 @@ export function Register() {
           placeholder="name@example.com"
           required
           value={email}
+          error={emailError}
           onChange={(e) => setEmail(e.target.value)}
+          onBlur={() => setEmailTouched(true)}
         />
         <div className="mb-4">
           <PasswordInput

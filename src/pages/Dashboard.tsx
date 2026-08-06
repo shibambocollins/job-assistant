@@ -4,6 +4,7 @@ import { Edit2, Plus, Search, Trash2 } from 'lucide-react';
 import { deleteApplication, discoverJobs, getMyApplications } from '../api/jobs';
 import { getErrorMessage } from '../api/client';
 import type { JobApplicationResponse } from '../types';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Button } from '../components/ui/Button';
 import { StatusBadge } from '../components/ui/StatusBadge';
 import { Alert } from '../components/ui/Alert';
@@ -17,6 +18,8 @@ export function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingJob, setEditingJob] = useState<JobApplicationResponse | null>(null);
   const navigate = useNavigate();
+
+  useDocumentTitle('Dashboard — Job Assistant');
 
   async function loadApplications() {
     setLoading(true);
