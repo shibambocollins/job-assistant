@@ -97,4 +97,10 @@ Text and UI colors are checked against WCAG AA contrast requirements (4.5:1 for 
 
 ---
 
+## Architecture
+
+This repo is the frontend only. For the data model, system architecture (frontend → API → services → external APIs/storage), and a request-flow sequence diagram, see [docs/ARCHITECTURE.md](https://github.com/shibambocollins/job-application-assistant-api/blob/main/docs/ARCHITECTURE.md) in the backend repo.
+
+---
+
 Built by Collins (Ntsobokwane Collins Shibambo) — final-year Diploma in ICT Application Development student at CPUT.
