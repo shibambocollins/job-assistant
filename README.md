@@ -1,5 +1,8 @@
 # Job Assistant AI — Frontend
 
+<img width="1518" height="585" alt="image" src="https://github.com/user-attachments/assets/aef3c8dd-b7ef-45a8-bf06-b7bbd5b5f952" />
+
+
 React frontend for Job Assistant AI — an AI-powered job search tool that reads your CV, discovers real tech job listings, scores how well you fit each one, and helps you track applications and prep for interviews.
 
 **Live app:** https://job-assistant-web.vercel.app
